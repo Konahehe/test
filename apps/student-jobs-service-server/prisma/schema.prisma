@@ -1,0 +1,132 @@
+datasource db {
+  provider = "mysql"
+  url = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Employer {
+  companyName  String?
+  contactEmail String?
+  createdAt    DateTime     @default(now())
+  description  String?
+  id           String       @id @default(cuid())
+  internships  Internship[]
+  jobPostings  JobPosting[]
+  jobs         Job[]
+  updatedAt    DateTime     @updatedAt
+  user         User?        @relation(fields: [userId], references: [id])
+  userId       String?
+  website      String?
+}
+
+model Job {
+  applications              Application[]
+  createdAt                 DateTime      @default(now())
+  description               String?
+  employer                  Employer?     @relation(fields: [employerId], references: [id])
+  employerId                String?
+  employerAssociationForJob String?
+  employerForJob            String?
+  id                        String        @id @default(cuid())
+  jobSeekers                JobSeeker[]
+  location                  String?
+  postedDate                DateTime?
+  salary                    Float?
+  title                     String?
+  updatedAt                 DateTime      @updatedAt
+}
+
+model Application {
+  createdAt      DateTime               @default(now())
+  id             String                 @id @default(cuid())
+  internship     Internship?            @relation(fields: [internshipId], references: [id])
+  internshipId   String?
+  job            Job?                   @relation(fields: [jobId], references: [id])
+  jobId          String?
+  status         EnumApplicationStatus?
+  submissionDate DateTime?
+  updatedAt      DateTime               @updatedAt
+  user           User?                  @relation(fields: [userId], references: [id])
+  userId         String?
+}
+
+model Internship {
+  applications                     Application[]
+  createdAt                        DateTime      @default(now())
+  description                      String?
+  duration                         String?
+  employer                         Employer?     @relation(fields: [employerId], references: [id])
+  employerId                       String?
+  employerAssociationForInternship String?
+  employerForInternship            String?
+  id                               String        @id @default(cuid())
+  jobSeekers                       JobSeeker[]
+  location                         String?
+  stipend                          Float?
+  title                            String?
+  updatedAt                        DateTime      @updatedAt
+}
+
+model User {
+  applications     Application[]
+  createdAt        DateTime          @default(now())
+  education        String?
+  email            String?           @unique
+  employerProfile  String?
+  employers        Employer[]
+  firstName        String?
+  id               String            @id @default(cuid())
+  jobSeekerProfile String?
+  jobSeekers       JobSeeker[]
+  lastName         String?
+  password         String
+  photo            Json?
+  role             EnumUserRole?
+  roles            Json
+  sessionId        String?
+  updatedAt        DateTime          @updatedAt
+  userType         EnumUserUserType?
+  username         String?
+}
+
+model JobSeeker {
+  createdAt    DateTime    @default(now())
+  education    String?
+  id           String      @id @default(cuid())
+  internship   Internship? @relation(fields: [internshipId], references: [id])
+  internshipId String?
+  job          Job?        @relation(fields: [jobId], references: [id])
+  jobId        String?
+  resume       Json?
+  skillSet     String?
+  skills       String?
+  updatedAt    DateTime    @updatedAt
+  user         User?       @relation(fields: [userId], references: [id])
+  userId       String?
+}
+
+model JobPosting {
+  createdAt    DateTime  @default(now())
+  description  String?
+  employer     Employer? @relation(fields: [employerId], references: [id])
+  employerId   String?
+  id           String    @id @default(cuid())
+  jobTitle     String?
+  requirements String?
+  updatedAt    DateTime  @updatedAt
+}
+
+enum EnumApplicationStatus {
+  Option1
+}
+
+enum EnumUserRole {
+  Option1
+}
+
+enum EnumUserUserType {
+  Option1
+}

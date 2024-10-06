@@ -1,0 +1,768 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Application {
+  createdAt: DateTime!
+  id: String!
+  internship: Internship
+  job: Job
+  status: EnumApplicationStatus
+  submissionDate: DateTime
+  updatedAt: DateTime!
+  user: User
+}
+
+input ApplicationCreateInput {
+  internship: InternshipWhereUniqueInput
+  job: JobWhereUniqueInput
+  status: EnumApplicationStatus
+  submissionDate: DateTime
+  user: UserWhereUniqueInput
+}
+
+input ApplicationCreateNestedManyWithoutInternshipsInput {
+  connect: [ApplicationWhereUniqueInput!]
+}
+
+input ApplicationCreateNestedManyWithoutJobsInput {
+  connect: [ApplicationWhereUniqueInput!]
+}
+
+input ApplicationCreateNestedManyWithoutUsersInput {
+  connect: [ApplicationWhereUniqueInput!]
+}
+
+input ApplicationListRelationFilter {
+  every: ApplicationWhereInput
+  none: ApplicationWhereInput
+  some: ApplicationWhereInput
+}
+
+input ApplicationOrderByInput {
+  createdAt: SortOrder
+  id: SortOrder
+  internshipId: SortOrder
+  jobId: SortOrder
+  status: SortOrder
+  submissionDate: SortOrder
+  updatedAt: SortOrder
+  userId: SortOrder
+}
+
+input ApplicationUpdateInput {
+  internship: InternshipWhereUniqueInput
+  job: JobWhereUniqueInput
+  status: EnumApplicationStatus
+  submissionDate: DateTime
+  user: UserWhereUniqueInput
+}
+
+input ApplicationUpdateManyWithoutInternshipsInput {
+  connect: [ApplicationWhereUniqueInput!]
+  disconnect: [ApplicationWhereUniqueInput!]
+  set: [ApplicationWhereUniqueInput!]
+}
+
+input ApplicationUpdateManyWithoutJobsInput {
+  connect: [ApplicationWhereUniqueInput!]
+  disconnect: [ApplicationWhereUniqueInput!]
+  set: [ApplicationWhereUniqueInput!]
+}
+
+input ApplicationUpdateManyWithoutUsersInput {
+  connect: [ApplicationWhereUniqueInput!]
+  disconnect: [ApplicationWhereUniqueInput!]
+  set: [ApplicationWhereUniqueInput!]
+}
+
+input ApplicationWhereInput {
+  id: StringFilter
+  internship: InternshipWhereUniqueInput
+  job: JobWhereUniqueInput
+  status: EnumApplicationStatus
+  submissionDate: DateTimeNullableFilter
+  user: UserWhereUniqueInput
+}
+
+input ApplicationWhereUniqueInput {
+  id: String!
+}
+
+input Credentials {
+  password: String!
+  username: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+input DateTimeNullableFilter {
+  equals: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  not: DateTime
+  notIn: [DateTime!]
+}
+
+type Employer {
+  companyName: String
+  contactEmail: String
+  createdAt: DateTime!
+  description: String
+  id: String!
+  internships(orderBy: [InternshipOrderByInput!], skip: Float, take: Float, where: InternshipWhereInput): [Internship!]!
+  jobPostings(orderBy: [JobPostingOrderByInput!], skip: Float, take: Float, where: JobPostingWhereInput): [JobPosting!]!
+  jobs(orderBy: [JobOrderByInput!], skip: Float, take: Float, where: JobWhereInput): [Job!]!
+  updatedAt: DateTime!
+  user: User
+  website: String
+}
+
+input EmployerCreateInput {
+  companyName: String
+  contactEmail: String
+  description: String
+  internships: InternshipCreateNestedManyWithoutEmployersInput
+  jobPostings: JobPostingCreateNestedManyWithoutEmployersInput
+  jobs: JobCreateNestedManyWithoutEmployersInput
+  user: UserWhereUniqueInput
+  website: String
+}
+
+input EmployerCreateNestedManyWithoutUsersInput {
+  connect: [EmployerWhereUniqueInput!]
+}
+
+input EmployerListRelationFilter {
+  every: EmployerWhereInput
+  none: EmployerWhereInput
+  some: EmployerWhereInput
+}
+
+input EmployerOrderByInput {
+  companyName: SortOrder
+  contactEmail: SortOrder
+  createdAt: SortOrder
+  description: SortOrder
+  id: SortOrder
+  updatedAt: SortOrder
+  userId: SortOrder
+  website: SortOrder
+}
+
+input EmployerUpdateInput {
+  companyName: String
+  contactEmail: String
+  description: String
+  internships: InternshipUpdateManyWithoutEmployersInput
+  jobPostings: JobPostingUpdateManyWithoutEmployersInput
+  jobs: JobUpdateManyWithoutEmployersInput
+  user: UserWhereUniqueInput
+  website: String
+}
+
+input EmployerUpdateManyWithoutUsersInput {
+  connect: [EmployerWhereUniqueInput!]
+  disconnect: [EmployerWhereUniqueInput!]
+  set: [EmployerWhereUniqueInput!]
+}
+
+input EmployerWhereInput {
+  companyName: StringNullableFilter
+  contactEmail: StringNullableFilter
+  description: StringNullableFilter
+  id: StringFilter
+  internships: InternshipListRelationFilter
+  jobPostings: JobPostingListRelationFilter
+  jobs: JobListRelationFilter
+  user: UserWhereUniqueInput
+  website: StringNullableFilter
+}
+
+input EmployerWhereUniqueInput {
+  id: String!
+}
+
+enum EnumApplicationStatus {
+  Option_1
+}
+
+enum EnumUserRole {
+  Option_1
+}
+
+enum EnumUserUserType {
+  Option_1
+}
+
+input FloatNullableFilter {
+  equals: Float
+  gt: Float
+  gte: Float
+  in: [Float!]
+  lt: Float
+  lte: Float
+  not: Float
+  notIn: [Float!]
+}
+
+type Internship {
+  applications(orderBy: [ApplicationOrderByInput!], skip: Float, take: Float, where: ApplicationWhereInput): [Application!]!
+  createdAt: DateTime!
+  description: String
+  duration: String
+  employer: Employer
+  employerAssociationForInternship: String
+  employerForInternship: String
+  id: String!
+  jobSeekers(orderBy: [JobSeekerOrderByInput!], skip: Float, take: Float, where: JobSeekerWhereInput): [JobSeeker!]!
+  location: String
+  stipend: Float
+  title: String
+  updatedAt: DateTime!
+}
+
+input InternshipCreateInput {
+  applications: ApplicationCreateNestedManyWithoutInternshipsInput
+  description: String
+  duration: String
+  employer: EmployerWhereUniqueInput
+  employerAssociationForInternship: String
+  employerForInternship: String
+  jobSeekers: JobSeekerCreateNestedManyWithoutInternshipsInput
+  location: String
+  stipend: Float
+  title: String
+}
+
+input InternshipCreateNestedManyWithoutEmployersInput {
+  connect: [InternshipWhereUniqueInput!]
+}
+
+input InternshipListRelationFilter {
+  every: InternshipWhereInput
+  none: InternshipWhereInput
+  some: InternshipWhereInput
+}
+
+input InternshipOrderByInput {
+  createdAt: SortOrder
+  description: SortOrder
+  duration: SortOrder
+  employerAssociationForInternship: SortOrder
+  employerForInternship: SortOrder
+  employerId: SortOrder
+  id: SortOrder
+  location: SortOrder
+  stipend: SortOrder
+  title: SortOrder
+  updatedAt: SortOrder
+}
+
+input InternshipUpdateInput {
+  applications: ApplicationUpdateManyWithoutInternshipsInput
+  description: String
+  duration: String
+  employer: EmployerWhereUniqueInput
+  employerAssociationForInternship: String
+  employerForInternship: String
+  jobSeekers: JobSeekerUpdateManyWithoutInternshipsInput
+  location: String
+  stipend: Float
+  title: String
+}
+
+input InternshipUpdateManyWithoutEmployersInput {
+  connect: [InternshipWhereUniqueInput!]
+  disconnect: [InternshipWhereUniqueInput!]
+  set: [InternshipWhereUniqueInput!]
+}
+
+input InternshipWhereInput {
+  applications: ApplicationListRelationFilter
+  description: StringNullableFilter
+  duration: StringNullableFilter
+  employer: EmployerWhereUniqueInput
+  employerAssociationForInternship: StringNullableFilter
+  employerForInternship: StringNullableFilter
+  id: StringFilter
+  jobSeekers: JobSeekerListRelationFilter
+  location: StringNullableFilter
+  stipend: FloatNullableFilter
+  title: StringNullableFilter
+}
+
+input InternshipWhereUniqueInput {
+  id: String!
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+"""
+The `JSONObject` scalar type represents JSON objects as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSONObject
+
+type Job {
+  applications(orderBy: [ApplicationOrderByInput!], skip: Float, take: Float, where: ApplicationWhereInput): [Application!]!
+  createdAt: DateTime!
+  description: String
+  employer: Employer
+  employerAssociationForJob: String
+  employerForJob: String
+  id: String!
+  jobSeekers(orderBy: [JobSeekerOrderByInput!], skip: Float, take: Float, where: JobSeekerWhereInput): [JobSeeker!]!
+  location: String
+  postedDate: DateTime
+  salary: Float
+  title: String
+  updatedAt: DateTime!
+}
+
+input JobCreateInput {
+  applications: ApplicationCreateNestedManyWithoutJobsInput
+  description: String
+  employer: EmployerWhereUniqueInput
+  employerAssociationForJob: String
+  employerForJob: String
+  jobSeekers: JobSeekerCreateNestedManyWithoutJobsInput
+  location: String
+  postedDate: DateTime
+  salary: Float
+  title: String
+}
+
+input JobCreateNestedManyWithoutEmployersInput {
+  connect: [JobWhereUniqueInput!]
+}
+
+input JobListRelationFilter {
+  every: JobWhereInput
+  none: JobWhereInput
+  some: JobWhereInput
+}
+
+input JobOrderByInput {
+  createdAt: SortOrder
+  description: SortOrder
+  employerAssociationForJob: SortOrder
+  employerForJob: SortOrder
+  employerId: SortOrder
+  id: SortOrder
+  location: SortOrder
+  postedDate: SortOrder
+  salary: SortOrder
+  title: SortOrder
+  updatedAt: SortOrder
+}
+
+type JobPosting {
+  createdAt: DateTime!
+  description: String
+  employer: Employer
+  id: String!
+  jobTitle: String
+  requirements: String
+  updatedAt: DateTime!
+}
+
+input JobPostingCreateInput {
+  description: String
+  employer: EmployerWhereUniqueInput
+  jobTitle: String
+  requirements: String
+}
+
+input JobPostingCreateNestedManyWithoutEmployersInput {
+  connect: [JobPostingWhereUniqueInput!]
+}
+
+input JobPostingListRelationFilter {
+  every: JobPostingWhereInput
+  none: JobPostingWhereInput
+  some: JobPostingWhereInput
+}
+
+input JobPostingOrderByInput {
+  createdAt: SortOrder
+  description: SortOrder
+  employerId: SortOrder
+  id: SortOrder
+  jobTitle: SortOrder
+  requirements: SortOrder
+  updatedAt: SortOrder
+}
+
+input JobPostingUpdateInput {
+  description: String
+  employer: EmployerWhereUniqueInput
+  jobTitle: String
+  requirements: String
+}
+
+input JobPostingUpdateManyWithoutEmployersInput {
+  connect: [JobPostingWhereUniqueInput!]
+  disconnect: [JobPostingWhereUniqueInput!]
+  set: [JobPostingWhereUniqueInput!]
+}
+
+input JobPostingWhereInput {
+  description: StringNullableFilter
+  employer: EmployerWhereUniqueInput
+  id: StringFilter
+  jobTitle: StringNullableFilter
+  requirements: StringNullableFilter
+}
+
+input JobPostingWhereUniqueInput {
+  id: String!
+}
+
+type JobSeeker {
+  createdAt: DateTime!
+  education: String
+  id: String!
+  internship: Internship
+  job: Job
+  resume: JSON
+  skillSet: String
+  skills: String
+  updatedAt: DateTime!
+  user: User
+}
+
+input JobSeekerCreateInput {
+  education: String
+  internship: InternshipWhereUniqueInput
+  job: JobWhereUniqueInput
+  resume: JSON
+  skillSet: String
+  skills: String
+  user: UserWhereUniqueInput
+}
+
+input JobSeekerCreateNestedManyWithoutInternshipsInput {
+  connect: [JobSeekerWhereUniqueInput!]
+}
+
+input JobSeekerCreateNestedManyWithoutJobsInput {
+  connect: [JobSeekerWhereUniqueInput!]
+}
+
+input JobSeekerCreateNestedManyWithoutUsersInput {
+  connect: [JobSeekerWhereUniqueInput!]
+}
+
+input JobSeekerListRelationFilter {
+  every: JobSeekerWhereInput
+  none: JobSeekerWhereInput
+  some: JobSeekerWhereInput
+}
+
+input JobSeekerOrderByInput {
+  createdAt: SortOrder
+  education: SortOrder
+  id: SortOrder
+  internshipId: SortOrder
+  jobId: SortOrder
+  resume: SortOrder
+  skillSet: SortOrder
+  skills: SortOrder
+  updatedAt: SortOrder
+  userId: SortOrder
+}
+
+input JobSeekerUpdateInput {
+  education: String
+  internship: InternshipWhereUniqueInput
+  job: JobWhereUniqueInput
+  resume: JSON
+  skillSet: String
+  skills: String
+  user: UserWhereUniqueInput
+}
+
+input JobSeekerUpdateManyWithoutInternshipsInput {
+  connect: [JobSeekerWhereUniqueInput!]
+  disconnect: [JobSeekerWhereUniqueInput!]
+  set: [JobSeekerWhereUniqueInput!]
+}
+
+input JobSeekerUpdateManyWithoutJobsInput {
+  connect: [JobSeekerWhereUniqueInput!]
+  disconnect: [JobSeekerWhereUniqueInput!]
+  set: [JobSeekerWhereUniqueInput!]
+}
+
+input JobSeekerUpdateManyWithoutUsersInput {
+  connect: [JobSeekerWhereUniqueInput!]
+  disconnect: [JobSeekerWhereUniqueInput!]
+  set: [JobSeekerWhereUniqueInput!]
+}
+
+input JobSeekerWhereInput {
+  education: StringNullableFilter
+  id: StringFilter
+  internship: InternshipWhereUniqueInput
+  job: JobWhereUniqueInput
+  resume: JsonFilter
+  skillSet: StringNullableFilter
+  skills: StringNullableFilter
+  user: UserWhereUniqueInput
+}
+
+input JobSeekerWhereUniqueInput {
+  id: String!
+}
+
+input JobUpdateInput {
+  applications: ApplicationUpdateManyWithoutJobsInput
+  description: String
+  employer: EmployerWhereUniqueInput
+  employerAssociationForJob: String
+  employerForJob: String
+  jobSeekers: JobSeekerUpdateManyWithoutJobsInput
+  location: String
+  postedDate: DateTime
+  salary: Float
+  title: String
+}
+
+input JobUpdateManyWithoutEmployersInput {
+  connect: [JobWhereUniqueInput!]
+  disconnect: [JobWhereUniqueInput!]
+  set: [JobWhereUniqueInput!]
+}
+
+input JobWhereInput {
+  applications: ApplicationListRelationFilter
+  description: StringNullableFilter
+  employer: EmployerWhereUniqueInput
+  employerAssociationForJob: StringNullableFilter
+  employerForJob: StringNullableFilter
+  id: StringFilter
+  jobSeekers: JobSeekerListRelationFilter
+  location: StringNullableFilter
+  postedDate: DateTimeNullableFilter
+  salary: FloatNullableFilter
+  title: StringNullableFilter
+}
+
+input JobWhereUniqueInput {
+  id: String!
+}
+
+input JsonFilter {
+  equals: JSONObject
+  not: JSONObject
+}
+
+type MetaQueryPayload {
+  count: Float!
+}
+
+type Mutation {
+  createApplication(data: ApplicationCreateInput!): Application!
+  createEmployer(data: EmployerCreateInput!): Employer!
+  createInternship(data: InternshipCreateInput!): Internship!
+  createJob(data: JobCreateInput!): Job!
+  createJobPosting(data: JobPostingCreateInput!): JobPosting!
+  createJobSeeker(data: JobSeekerCreateInput!): JobSeeker!
+  createUser(data: UserCreateInput!): User!
+  deleteApplication(where: ApplicationWhereUniqueInput!): Application!
+  deleteEmployer(where: EmployerWhereUniqueInput!): Employer!
+  deleteInternship(where: InternshipWhereUniqueInput!): Internship!
+  deleteJob(where: JobWhereUniqueInput!): Job!
+  deleteJobPosting(where: JobPostingWhereUniqueInput!): JobPosting!
+  deleteJobSeeker(where: JobSeekerWhereUniqueInput!): JobSeeker!
+  deleteUser(where: UserWhereUniqueInput!): User!
+  login(credentials: Credentials!): UserInfo!
+  updateApplication(data: ApplicationUpdateInput!, where: ApplicationWhereUniqueInput!): Application!
+  updateEmployer(data: EmployerUpdateInput!, where: EmployerWhereUniqueInput!): Employer!
+  updateInternship(data: InternshipUpdateInput!, where: InternshipWhereUniqueInput!): Internship!
+  updateJob(data: JobUpdateInput!, where: JobWhereUniqueInput!): Job!
+  updateJobPosting(data: JobPostingUpdateInput!, where: JobPostingWhereUniqueInput!): JobPosting!
+  updateJobSeeker(data: JobSeekerUpdateInput!, where: JobSeekerWhereUniqueInput!): JobSeeker!
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User!
+}
+
+type Query {
+  _applicationsMeta(where: ApplicationWhereInput): MetaQueryPayload!
+  _employersMeta(where: EmployerWhereInput): MetaQueryPayload!
+  _internshipsMeta(where: InternshipWhereInput): MetaQueryPayload!
+  _jobPostingsMeta(where: JobPostingWhereInput): MetaQueryPayload!
+  _jobSeekersMeta(where: JobSeekerWhereInput): MetaQueryPayload!
+  _jobsMeta(where: JobWhereInput): MetaQueryPayload!
+  _usersMeta(where: UserWhereInput): MetaQueryPayload!
+  application(where: ApplicationWhereUniqueInput!): Application
+  applications(orderBy: [ApplicationOrderByInput!], skip: Float, take: Float, where: ApplicationWhereInput): [Application!]!
+  employer(where: EmployerWhereUniqueInput!): Employer
+  employers(orderBy: [EmployerOrderByInput!], skip: Float, take: Float, where: EmployerWhereInput): [Employer!]!
+  internship(where: InternshipWhereUniqueInput!): Internship
+  internships(orderBy: [InternshipOrderByInput!], skip: Float, take: Float, where: InternshipWhereInput): [Internship!]!
+  job(where: JobWhereUniqueInput!): Job
+  jobPosting(where: JobPostingWhereUniqueInput!): JobPosting
+  jobPostings(orderBy: [JobPostingOrderByInput!], skip: Float, take: Float, where: JobPostingWhereInput): [JobPosting!]!
+  jobSeeker(where: JobSeekerWhereUniqueInput!): JobSeeker
+  jobSeekers(orderBy: [JobSeekerOrderByInput!], skip: Float, take: Float, where: JobSeekerWhereInput): [JobSeeker!]!
+  jobs(orderBy: [JobOrderByInput!], skip: Float, take: Float, where: JobWhereInput): [Job!]!
+  user(where: UserWhereUniqueInput!): User
+  userInfo: UserInfo!
+  users(orderBy: [UserOrderByInput!], skip: Float, take: Float, where: UserWhereInput): [User!]!
+}
+
+enum QueryMode {
+  Default
+  Insensitive
+}
+
+enum SortOrder {
+  Asc
+  Desc
+}
+
+input StringFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  mode: QueryMode
+  not: String
+  notIn: [String!]
+  startsWith: String
+}
+
+input StringNullableFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  mode: QueryMode
+  not: String
+  notIn: [String!]
+  startsWith: String
+}
+
+type User {
+  applications(orderBy: [ApplicationOrderByInput!], skip: Float, take: Float, where: ApplicationWhereInput): [Application!]!
+  createdAt: DateTime!
+  education: String
+  email: String
+  employerProfile: String
+  employers(orderBy: [EmployerOrderByInput!], skip: Float, take: Float, where: EmployerWhereInput): [Employer!]!
+  firstName: String
+  id: String!
+  jobSeekerProfile: String
+  jobSeekers(orderBy: [JobSeekerOrderByInput!], skip: Float, take: Float, where: JobSeekerWhereInput): [JobSeeker!]!
+  lastName: String
+  photo: JSON
+  role: EnumUserRole
+  roles: JSON!
+  sessionId: String
+  updatedAt: DateTime!
+  userType: EnumUserUserType
+  username: String
+}
+
+input UserCreateInput {
+  applications: ApplicationCreateNestedManyWithoutUsersInput
+  education: String
+  email: String
+  employerProfile: String
+  employers: EmployerCreateNestedManyWithoutUsersInput
+  firstName: String
+  jobSeekerProfile: String
+  jobSeekers: JobSeekerCreateNestedManyWithoutUsersInput
+  lastName: String
+  password: String!
+  photo: JSON
+  role: EnumUserRole
+  roles: JSON!
+  sessionId: String
+  userType: EnumUserUserType
+  username: String
+}
+
+type UserInfo {
+  accessToken: String
+  id: String!
+  roles: [String!]!
+  username: String!
+}
+
+input UserOrderByInput {
+  createdAt: SortOrder
+  education: SortOrder
+  email: SortOrder
+  employerProfile: SortOrder
+  firstName: SortOrder
+  id: SortOrder
+  jobSeekerProfile: SortOrder
+  lastName: SortOrder
+  password: SortOrder
+  photo: SortOrder
+  role: SortOrder
+  roles: SortOrder
+  sessionId: SortOrder
+  updatedAt: SortOrder
+  userType: SortOrder
+  username: SortOrder
+}
+
+input UserUpdateInput {
+  applications: ApplicationUpdateManyWithoutUsersInput
+  education: String
+  email: String
+  employerProfile: String
+  employers: EmployerUpdateManyWithoutUsersInput
+  firstName: String
+  jobSeekerProfile: String
+  jobSeekers: JobSeekerUpdateManyWithoutUsersInput
+  lastName: String
+  password: String
+  photo: JSON
+  role: EnumUserRole
+  roles: JSON
+  sessionId: String
+  userType: EnumUserUserType
+  username: String
+}
+
+input UserWhereInput {
+  applications: ApplicationListRelationFilter
+  education: StringNullableFilter
+  email: StringNullableFilter
+  employerProfile: StringNullableFilter
+  employers: EmployerListRelationFilter
+  firstName: StringNullableFilter
+  id: StringFilter
+  jobSeekerProfile: StringNullableFilter
+  jobSeekers: JobSeekerListRelationFilter
+  lastName: StringNullableFilter
+  photo: JsonFilter
+  role: EnumUserRole
+  sessionId: StringNullableFilter
+  userType: EnumUserUserType
+  username: StringNullableFilter
+}
+
+input UserWhereUniqueInput {
+  id: String!
+}
